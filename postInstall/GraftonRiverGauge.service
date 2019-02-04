@@ -6,7 +6,7 @@ After=rgMan.service
 [Service]
 Type=dbus
 BusName=com.GraftonRiverGauge
-ExecStart=/bin/bash /opt/rGauge/gList/GraftonRiverGauge/autoStart
+ExecStart=/usr/local/bin/node /opt/rGauge/gList/GraftonRiverGauge/app.js
 Restart=on-failure
 StandardOutput=syslog
 StandardError=syslog
