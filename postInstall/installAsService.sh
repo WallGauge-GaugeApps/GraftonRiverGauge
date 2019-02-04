@@ -1,5 +1,5 @@
 #!/bin/bash
-# To make this file executable follow these steps https://stackoverflow.com/questions/21691202/how-to-create-file-execute-mode-permissions-in-git-on-windows
+# From DOS prompt type (git update-index --chmod=+x installAsService.sh) to make this file executable.
 set -e
 echo "NPM post install shell that installs this app as service starts now..."
 echo "Set irdclient as defalut group for GraftonRiverGauge -> sudo chown :irdclient ../GraftonRiverGauge"
