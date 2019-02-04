@@ -27,4 +27,4 @@ On the Raspberry Pi Zero W from a [SSH session](https://www.raspberrypi.org/magp
 
 
 ## More Gauge pictures:
-comming soon
+coming soon
