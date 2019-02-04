@@ -19,8 +19,8 @@ var gDta = new rvrDta(siteList);
 function dataUpdateInstantValues(){
     gDta.updateInstantaneousValues(function(errNum, errTxt, dObj){
         if(errNum == 0){   
-            validData_InstantValues = true;  
             console.log('\nInstant Data Report:');
+            /*
             Object.keys(dObj.instant).forEach(function(ele1){
                 console.log(dObj.instant[ele1].siteName);
                 Object.keys(dObj.instant[ele1].siteData).forEach(function(ele2){
@@ -28,6 +28,17 @@ function dataUpdateInstantValues(){
                     console.log('\t'+ ele2 + ':\t' + dObj.instant[ele1].siteData[ele2].value + ' ' +dObj.instant[ele1].siteData[ele2].unitCode + ', ' + oTime.toLocaleTimeString() + ' ' + oTime.toLocaleDateString() + '. \n\t\t' + dObj.instant[ele1].siteData[ele2].valueName);
                 })
             }); 
+            */
+            console.log('dobj.instant follows:');
+            console.dir(dObj.instant);
+            /*
+            if(myAppMan.setGaugeValue(dtaObj.powerNow)){
+                myAppMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
+            } else {
+                console.log('Not allowed to send gaguge value at this time by AppManager.  Check IOS App for details');
+            };
+            */
+
         } else {
             console.log('errNum = ' + errNum);
             console.log('errTxt = ' + errTxt);
