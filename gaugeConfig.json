@@ -1,0 +1,10 @@
+{
+    "descripition":"Grafton River Gauge",
+    "uuid":"b316ac5a-892f-41ec-8291-5ab5f36cbb27",
+    "dBusName":"com.GraftonRiverGauge",
+    "calibrationTable": [[0,0],[10,15],[20,216],[30,416],[40,614]],
+    "dataSiteCode":"05587450",
+    "dataParCode":"00065",
+    "dataLoc":"instant",
+    "gaugeIrAddress":"1"
+}

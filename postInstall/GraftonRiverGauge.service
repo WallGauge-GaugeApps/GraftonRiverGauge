@@ -1,0 +1,21 @@
+[Unit]
+Description=GraftonRiverGauge
+Wants=rgMan.service
+After=rgMan.service
+
+[Service]
+Type=dbus
+BusName=com.GraftonRiverGauge
+ExecStart=/bin/bash /opt/rGauge/gList/GraftonRiverGauge/autoStart
+Restart=on-failure
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=GraftonRiverGauge
+User=rgservice
+Group=irdclient
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/opt/rGauge/gList/GraftonRiverGauge
+
+[Install]
+WantedBy=multi-user.target
