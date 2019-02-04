@@ -30,7 +30,7 @@ function dataUpdateInstantValues(){
             }); 
             */
             console.log('dobj.instant follows:');
-            console.dir(dObj.instant);
+            console.dir(dObj.instant["00065"]);
             /*
             if(myAppMan.setGaugeValue(dtaObj.powerNow)){
                 myAppMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
