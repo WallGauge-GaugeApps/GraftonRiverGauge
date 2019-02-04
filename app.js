@@ -29,8 +29,12 @@ function dataUpdateInstantValues(){
                 })
             }); 
             */
-            console.log('dobj.instant follows:');
+            console.log('dobj follows:');
             console.dir(dObj,{depth: null});
+
+            var rvrLevel = dObj[myAppMan.config.dataLoc][myAppMan.config.dataSiteCode].siteData[myAppMan.config.dataParCode].value
+            console.log('River Level = ' + rvrLevel);
+
             /*
             if(myAppMan.setGaugeValue(dtaObj.powerNow)){
                 myAppMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
