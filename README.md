@@ -1,4 +1,4 @@
-# Grafton River Gauge (Data Delegate)
+# River Gauge (Data Delegate)
 This Node.JS app reads the real-time river level and sends it to a physical battery powered gauge for display with the [irdTxClass ]( https://github.com/RuckerGauge/irdTxClass).  This application is intended to run on a Raspberry Pi Zero W configured as the Gauge Data Transmitter (see [irdTxServer ]( https://github.com/RuckerGauge/irdTxServer)).   
 
 ## Hardware Requirements
@@ -26,5 +26,10 @@ On the Raspberry Pi Zero W from a [SSH session](https://www.raspberrypi.org/magp
   * The npm install process will install the node dependencies. 
 
 
-## More Gauge pictures:
-coming soon
+## Files to change if modifying:
+* gaugeConfig.json
+* package.json
+* *.conf file
+* *.service file
+* installAsService.sh From DOS prompt type (git update-index --chmod=+x installAsService.sh) to make this file executable.
+* un-installAsService.sh From DOS prompt type (git update-index --chmod=+x un-installAsService.sh) to make this file executable.
