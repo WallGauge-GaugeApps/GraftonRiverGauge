@@ -1,7 +1,7 @@
-const rvrDta =      require('river-data-fetcher');
-const MyAppMan =    require('./MyAppManager.js');
+const RvrDta =  require('river-data-fetcher');
+const AppMan =  require('app-manager');
 
-const myAppMan = new MyAppMan();
+const myAppMan = new AppMan(__dirname + '/gaugeConfig.json', __dirname + '/modifiedConfig.json');
 
 console.log('__________________ App Config follows __________________');
 console.dir(myAppMan.config, {depth: null});
@@ -11,7 +11,7 @@ var siteList = {
     [myAppMan.config.dataSiteCode] : {descripition:[myAppMan.config.descripition]}
 };
 
-var gDta = new rvrDta(siteList);
+var gDta = new RvrDta(siteList);
 
 function dataUpdateInstantValues(){
     gDta.updateInstantaneousValues(function(errNum, errTxt, dObj){
