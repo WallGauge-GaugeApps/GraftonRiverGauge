@@ -2,6 +2,7 @@ const RvrDta =  require('river-data-fetcher');
 const AppMan =  require('app-manager');
 
 const myAppMan = new AppMan(__dirname + '/gaugeConfig.json', __dirname + '/modifiedConfig.json');
+var inAlert = false;
 
 console.log('__________________ App Config follows __________________');
 console.dir(myAppMan.config, {depth: null});
@@ -21,6 +22,10 @@ function dataUpdateInstantValues(){
 
             if(myAppMan.setGaugeValue(rvrLevel)){
                 myAppMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
+                if(inAlert == true){
+                    myAppMan.sendAlert({[myAppMan.config.descripition]:"0"});
+                    inAlert = false;
+                };
             } else {
                 console.log('Not allowed to send gauge value at this time by AppManager.  Check IOS App for details');
             };
@@ -28,6 +33,10 @@ function dataUpdateInstantValues(){
             console.log('errNum = ' + errNum);
             console.log('errTxt = ' + errTxt);
             myAppMan.setGaugeStatus('Error updating data. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString() + ' errTxt: ' + errTxt);
+            if(inAlert == false){
+                myAppMan.sendAlert({[myAppMan.config.descripition]:"1"});
+                inAlert = true;
+            };
             validData_InstantValues = false;
         };
     });
