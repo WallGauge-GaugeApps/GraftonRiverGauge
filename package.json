@@ -1,6 +1,6 @@
 {
   "name": "grafton-river-gauge",
-  "version": "1.5.0",
+  "version": "2.1.2",
   "description": "Sends data to RG-wallhang wirelessly over infrared",
   "main": "app.js",
   "scripts": {
@@ -19,6 +19,6 @@
   "homepage": "",
   "dependencies": {
     "app-manager": "git+https://github.com/RuckerGauge/appManager.git",
-    "river-data-fetcher": "git+https://github.com/RuckerGauge/RvrDataFetcher.git"
+    "request": "^2.70.0"
   }
 }

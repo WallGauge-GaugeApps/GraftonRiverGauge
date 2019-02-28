@@ -6,10 +6,10 @@ echo "Set irdclient as defalut group for GraftonRiverGauge -> sudo chown :irdcli
 sudo chown :irdclient ../GraftonRiverGauge
 echo "Give default group write access to the GraftonRiverGauge directory -> sudo chmod g+w ../GraftonRiverGauge"
 sudo chmod g+w ../GraftonRiverGauge
-echo "Install D-Bus config file for this service -> sudo cp ./postInstall/GraftonRiverGauge.conf /etc/dbus-1/system.d"
-sudo cp ./postInstall/GraftonRiverGauge.conf /etc/dbus-1/system.d
-echo "Install systemd service file -> cp -n ./postInstall/GraftonRiverGauge.service /etc/systemd/system"
-sudo cp -n ./postInstall/GraftonRiverGauge.service /etc/systemd/system
+echo "Install D-Bus config file for this service -> sudo cp ./postInstall/dbus.conf /etc/dbus-1/system.d/GraftonRiverGauge.conf"
+sudo cp ./postInstall/dbus.conf /etc/dbus-1/system.d/GraftonRiverGauge.conf
+echo "Install systemd service file -> sudo cp -n ./postInstall/server.service /etc/systemd/system/GraftonRiverGauge.service"
+sudo cp -n ./postInstall/server.service /etc/systemd/system/GraftonRiverGauge.service
 echo "Enable the servers to start on reboot -> systemctl enable GraftonRiverGauge.service"
 sudo systemctl enable GraftonRiverGauge.service
 #echo "Start the service now -> systemctl start GraftonRiverGauge.service"
