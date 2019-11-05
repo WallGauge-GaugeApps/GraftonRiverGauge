@@ -6,5 +6,7 @@
     "dataSiteCode":"05587450",
     "dataParCode":"00065",
     "dataLoc":"instant",
-    "gaugeIrAddress":"1"
+    "gaugeIrAddress":"1",
+    "battLifeInDays":"365",
+    "battLastReplaced":""
 }
