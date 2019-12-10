@@ -1,6 +1,6 @@
 {
   "name": "grafton-river-gauge",
-  "version": "2.2.1",
+  "version": "3.0.1",
   "description": "Sends data to RG-wallhang wirelessly over infrared",
   "main": "app.js",
   "scripts": {
