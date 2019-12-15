@@ -12,7 +12,7 @@ echo "Install systemd service file -> sudo cp -n ./postInstall/server.service /e
 sudo cp -n ./postInstall/server.service /etc/systemd/system/GraftonRiverGauge.service
 echo "Enable the servers to start on reboot -> systemctl enable GraftonRiverGauge.service"
 sudo systemctl enable GraftonRiverGauge.service
-#echo "Start the service now -> systemctl start GraftonRiverGauge.service"
-#sudo systemctl start GraftonRiverGauge.service
+echo "Start the service now -> systemctl start GraftonRiverGauge.service"
+sudo systemctl start GraftonRiverGauge.service
 echo "NPM Post install shell is complete."
 echo "To start this servers please reboot the server. After reboot Type -> journalctl -u GraftonRiverGauge -f <- to see status."
