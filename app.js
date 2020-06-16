@@ -1,5 +1,7 @@
-const RvrDta =  require('./riverData.js');
-const AppMan =  require('app-manager');
+const RvrDta = require('./riverData.js');
+const AppMan = require('app-manager');
+
+overrideConsole();
 
 const myAppMan = new AppMan(__dirname + '/gaugeConfig.json', __dirname + '/modifiedConfig.json');
 const gDta = new RvrDta();
@@ -17,21 +19,21 @@ var inAlert = false;
 var firstRun = true;
 
 console.log('__________________ App Config follows __________________');
-console.dir(myAppMan.config, {depth: null});
+console.dir(myAppMan.config, { depth: null });
 console.log('________________________________________________________');
 
 
-function getRvrData(){
+function getRvrData() {
     console.log('Updating data via Internet for dataSiteCode = ' + myAppMan.config.dataSiteCode + ', dataParCode = ' + myAppMan.config.dataParCode);
     validData = false;
     gDta.getInstantValues(myAppMan.config.dataSiteCode, myAppMan.config.dataParCode, setNewValue);
 };
 
-function setNewValue(eNum, eTxt, val){
-    if(eNum==0){
+function setNewValue(eNum, eTxt, val) {
+    if (eNum == 0) {
         gValue = val;
         validData = true;
-        if(firstRun == true || sendDataInterval == 0){
+        if (firstRun == true || sendDataInterval == 0) {
             firstRun = false;
             sendValueToGauge();
         };
@@ -40,19 +42,19 @@ function setNewValue(eNum, eTxt, val){
         console.log('errNum = ' + eNum);
         console.log('errTxt = ' + eTxt);
         myAppMan.setGaugeStatus('Error updating data. ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString() + ' errTxt: ' + eTxt);
-        if(inAlert == false){
-            myAppMan.sendAlert({[myAppMan.config.descripition]:"1"});
+        if (inAlert == false) {
+            myAppMan.sendAlert({ [myAppMan.config.descripition]: "1" });
             inAlert = true;
         };
     };
 };
 
-function sendValueToGauge(){
-    if(validData){
-        if(myAppMan.setGaugeValue(gValue)){
+function sendValueToGauge() {
+    if (validData) {
+        if (myAppMan.setGaugeValue(gValue)) {
             myAppMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
-            if(inAlert == true){
-                myAppMan.sendAlert({[myAppMan.config.descripition]:"0"});
+            if (inAlert == true) {
+                myAppMan.sendAlert({ [myAppMan.config.descripition]: "0" });
                 inAlert = false;
             };
         } else {
@@ -65,9 +67,9 @@ function sendValueToGauge(){
 
 var randomStart = getRandomInt(5000, 60000);
 var dtaRenwalDelay = getRandomInt(60000, 600000);
-console.log('First data call will occur in '+ (randomStart / 1000).toFixed(2) + ' seconds.');
+console.log('First data call will occur in ' + (randomStart / 1000).toFixed(2) + ' seconds.');
 console.log('The data renewal and data tx timmers will start ' + (dtaRenwalDelay / 60000).toFixed(2) + ' minutes after first data call.')
-if(sendDataInterval > 0){
+if (sendDataInterval > 0) {
     console.log('After the first data call. An update will be made every ' + getDataInterveral.toFixed(2) + ' minutes.');
     console.log('If data is valid it will be sent to the gauge every ' + sendDataInterval.toFixed(2) + ' minutes.');
 } else {
@@ -75,19 +77,32 @@ if(sendDataInterval > 0){
     console.log('Valid data will be sent to the gauge as soon as it is received. ');
 };
 
-setTimeout(()  =>{
+setTimeout(() => {
     getRvrData();
-}, randomStart);                     
+}, randomStart);
 
-setTimeout(()=>{
+setTimeout(() => {
     console.log('Get data and tx data timmers starting now.')
-    setInterval(()=>{getRvrData()}, getDataInterveral * 60 * 1000);
-    if(sendDataInterval > 0){setInterval(()=>{sendValueToGauge()}, sendDataInterval * 60 * 1000)};
-},dtaRenwalDelay + randomStart);
+    setInterval(() => { getRvrData() }, getDataInterveral * 60 * 1000);
+    if (sendDataInterval > 0) { setInterval(() => { sendValueToGauge() }, sendDataInterval * 60 * 1000) };
+}, dtaRenwalDelay + randomStart);
 
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-  };
+};
+
+/** Overrides console.error, console.warn, and console.debug
+* By placing <#> in front of the log text it will allow us to filter them with systemd
+* For example to just see errors and warnings use journalctl with the -p4 option 
+*/
+function overrideConsole() {
+    const orignalConErr = console.error;
+    const orignalConWarn = console.warn;
+    const orignalConDebug = console.debug;
+    console.error = ((data = '', arg = '') => { orignalConErr('<3>' + data, arg) });
+    console.warn = ((data = '', arg = '') => { orignalConWarn('<4>' + data, arg) });
+    console.debug = ((data = '', arg = '') => { orignalConDebug('<7>' + data, arg) });
+};
