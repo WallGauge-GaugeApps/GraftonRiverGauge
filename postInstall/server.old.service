@@ -1,9 +1,7 @@
 [Unit]
 Description=GraftonRiverGauge
-Wants=gdtMan.service
-Wants=bluetooth.service
-After=gdtMan.service
-After=bluetooth.service
+Wants=rgMan.service
+After=rgMan.service
 
 [Service]
 Type=dbus
@@ -17,7 +15,6 @@ User=rgservice
 Group=irdclient
 Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 Environment=NODE_ENV=production
-Environment=NODE_PATH=/opt/rGauge/.npm-global/lib/node_modules
 WorkingDirectory=/opt/rGauge/gList/GraftonRiverGauge
 TimeoutSec=180
 
