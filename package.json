@@ -1,6 +1,6 @@
 {
   "name": "grafton-river-gauge",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "description": "Sends data to WallGauge wirelessly over infrared",
   "main": "app.js",
   "scripts": {
@@ -17,6 +17,7 @@
   "dependencies": {
     "request": "^2.70.0",
     "irdtxclass": "git+https://github.com/WallGauge/irdTxClass.git",
-    "app-manager": "git+https://github.com/WallGauge/appManager.git"
+    "app-manager": "git+https://github.com/WallGauge/appManager.git",
+    "cipher": "git+https://github.com/WallGauge/Cipher.git"
   }
 }
