@@ -51,9 +51,10 @@ function getForecastData() {
             fCastHasData = true;
             console.log(ForecastPeak.descripition + ' = ' + rData.dataObj.forecast[ForecastPeak.siteID].LongTermHigh);
             fcPeak.sendValue(rData.dataObj.forecast[ForecastPeak.siteID].LongTermHigh);
-            let rvrChage = Number(rData.dataObj.forecast[ForecastPeak.siteID].Current) - Number(rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow)
-            console.log('The current river level is ' + rData.dataObj.forecast[ForecastPeak.siteID].Current + ', ' + Forecast1Day.descripition + ' = ' + rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow + ' this is a change of ' + rvrChage);
-            fc1Day.sendValue(rvrChage);
+            let rvrChange = Number(rData.dataObj.forecast[ForecastPeak.siteID].Current) - Number(rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow);
+            if(Number(rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow) < Number(rData.dataObj.forecast[ForecastPeak.siteID].Current)) rvrChange = rvrChange * -1;
+            console.log('The current river level is ' + rData.dataObj.forecast[ForecastPeak.siteID].Current + ', ' + Forecast1Day.descripition + ' = ' + rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow + ' this is a change of ' + rvrChange);
+            fc1Day.sendValue(rvrChange);
         })
         .catch((err) => {
             console.error('Error calling rData.getForecastData ', err)
