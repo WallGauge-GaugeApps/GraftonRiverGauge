@@ -1,11 +1,11 @@
-const RvrDta = require('./riverData.js');
+// const RvrDta = require('./riverData.js');
 const AppMan = require('app-manager');
 const RData = require('river-data-getter');
 
 overrideConsole();
 
 const myAppMan = new AppMan(__dirname + '/gaugeConfig.json', __dirname + '/modifiedConfig.json');
-const gDta = new RvrDta();
+// const gDta = new RvrDta();
 const rData = new(RData);
 /*
     There are two timmers, one to fetch data from the internet and the other to send it to a gauge. 
@@ -34,6 +34,10 @@ function getRvrData() {
         console.log('Gauge value for ' + myAppMan.config.dataSiteCode + ' = ' + rData.dataObj.current[myAppMan.config.dataSiteCode]['00065'].value)
         setNewValue(0, '', rData.dataObj.current[myAppMan.config.dataSiteCode]['00065'].value );
     })
+    .catch((err)=>{
+        console.error('Error calling rData.getCurrentData ', err)
+        setNewValue(1, 'Error getting river data');
+    });
 };
 
 function setNewValue(eNum, eTxt, val) {
