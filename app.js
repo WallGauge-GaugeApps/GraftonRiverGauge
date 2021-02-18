@@ -52,7 +52,7 @@ function getForecastData() {
             console.log(ForecastPeak.descripition + ' = ' + rData.dataObj.forecast[ForecastPeak.siteID].LongTermHigh);
             fcPeak.sendValue(rData.dataObj.forecast[ForecastPeak.siteID].LongTermHigh);
             let rvrChage = Number(rData.dataObj.forecast[ForecastPeak.siteID].Current) - Number(rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow)
-            console.log(Forecast1Day.descripition + ' = ' + rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow + ' this is a change of ' + rvrChage);
+            console.log('The current river level is ' + rData.dataObj.forecast[ForecastPeak.siteID].Current + ', ' + Forecast1Day.descripition + ' = ' + rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow + ' this is a change of ' + rvrChage);
             fc1Day.sendValue(rvrChage);
         })
         .catch((err) => {
