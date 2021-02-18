@@ -20,6 +20,7 @@ const sendDataInterval = 0;     // If value = 0 get data will send data based on
 
 var gValue = null;
 var validData = false;
+var fCastHasData = false;
 var inAlert = false;
 var firstRun = true;
 
@@ -47,8 +48,11 @@ function getForecastData() {
     console.log('Updating forecast data for ' + ForecastPeak.siteID);
     rData.getForecast(ForecastPeak.siteID)
         .then(() => {
+            fCastHasData = true;
             console.log(ForecastPeak.descripition + ' = ' + rData.dataObj.forecast[ForecastPeak.siteID].LongTermHigh);
+            fcPeak.sendValue(rData.dataObj.forecast[ForecastPeak.siteID].LongTermHigh);
             console.log(Forecast1Day.descripition + ' = ' + rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow);
+            fc1Day.sendValue(rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow);
         })
         .catch((err) => {
             console.error('Error calling rData.getForecastData ', err)
