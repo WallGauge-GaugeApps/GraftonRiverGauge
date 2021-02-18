@@ -1,0 +1,8 @@
+{
+    "descripition":"Forecast Peak Gauge",
+    "calibrationTable": [[0,0],[10,15],[20,216],[30,416],[40,614]],
+    "gaugeIrAddress":"9",
+    "battLifeInDays":"620",
+    "siteID":"GRFI2",
+    "gaugeURL":"https://water.weather.gov/ahps2/hydrograph.php?wfo=lsx&gage=grfi2"
+}

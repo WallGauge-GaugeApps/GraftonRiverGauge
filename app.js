@@ -1,10 +1,15 @@
 const AppMan = require('app-manager');
 const RData = require('river-data-getter');
+const irTransmitter = require('irdtxclass');
+const Forecast1Day = require('./secondaryGauges/forecast1DayGauge.json');
+const ForecastPeak = require('./secondaryGauges/forecastPeakGauge.json');
 
 overrideConsole();
 
 const myAppMan = new AppMan(__dirname + '/gaugeConfig.json', __dirname + '/modifiedConfig.json');
-const rData = new(RData);
+const fc1Day = new irTransmitter(Forecast1Day.gaugeIrAddress, Forecast1Day.calibrationTable);
+const fcPeak = new irTransmitter(ForecastPeak.gaugeIrAddress, ForecastPeak.calibrationTable);
+const rData = new (RData);
 /*
     There are two timmers, one to fetch data from the internet and the other to send it to a gauge. 
     If you would like to send data to the gauge as soon as you receive it, then only one timer is required.
@@ -27,15 +32,28 @@ function getRvrData() {
     console.log('Updating data via Internet for dataSiteCode = ' + myAppMan.config.dataSiteCode);
     validData = false;
     rData.getCurrentData([myAppMan.config.dataSiteCode])
-    .then(()=>{
-        console.log('Gauge value for ' + myAppMan.config.dataSiteCode + ' = ' + rData.dataObj.current[myAppMan.config.dataSiteCode]['00065'].value)
-        setNewValue(0, '', rData.dataObj.current[myAppMan.config.dataSiteCode]['00065'].value );
-    })
-    .catch((err)=>{
-        console.error('Error calling rData.getCurrentData ', err)
-        setNewValue(1, 'Error getting river data');
-    });
+        .then(() => {
+            console.log('Gauge value for ' + myAppMan.config.dataSiteCode + ' = ' + rData.dataObj.current[myAppMan.config.dataSiteCode]['00065'].value)
+            setNewValue(0, '', rData.dataObj.current[myAppMan.config.dataSiteCode]['00065'].value);
+        })
+        .catch((err) => {
+            console.error('Error calling rData.getCurrentData ', err)
+            setNewValue(1, 'Error getting river data');
+        });
+    getForecastData();
 };
+
+function getForecastData() {
+    console.log('Updating forecast data for ' + ForecastPeak.siteID);
+    rData.getForecast(ForecastPeak.siteID)
+        .then(() => {
+            console.log(ForecastPeak.descripition + ' = ' + rData.dataObj.forecast[ForecastPeak.siteID].LongTermHigh);
+            console.log(Forecast1Day.descripition + ' = ' + rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow);
+        })
+        .catch((err) => {
+            console.error('Error calling rData.getForecastData ', err)
+        });
+}
 
 function setNewValue(eNum, eTxt, val) {
     if (eNum == 0) {

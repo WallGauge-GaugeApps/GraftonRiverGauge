@@ -1,0 +1,8 @@
+{
+    "descripition":"One Day Forecast",
+    "calibrationTable": [[-84,16],[-12,77],[-4,160],[-2,199],[-1,239],[0,318],[1,397],[2,438],[4,476],[12,555],[84,616]],
+    "gaugeIrAddress":"8",
+    "battLifeInDays":"620",
+    "siteID":"GRFI2",
+    "gaugeURL":"https://water.weather.gov/ahps2/hydrograph.php?wfo=lsx&gage=grfi2"
+}
