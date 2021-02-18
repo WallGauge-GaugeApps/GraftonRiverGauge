@@ -18,6 +18,7 @@
     "app-manager": "git+https://github.com/WallGauge/appManager.git",
     "ble-peripheral": "git+https://github.com/RuckerGauge/blePeripheral.git",
     "cipher": "git+https://github.com/WallGauge/Cipher.git",
-    "river-data-getter": "git+https://github.com/WallGauge-GaugeApps/RiverDataGetter.git"
+    "river-data-getter": "git+https://github.com/WallGauge-GaugeApps/RiverDataGetter.git",
+    "irdtxclass": "git+https://github.com/WallGauge/irdTxClass.git"
   }
 }
