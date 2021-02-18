@@ -1,11 +1,9 @@
-// const RvrDta = require('./riverData.js');
 const AppMan = require('app-manager');
 const RData = require('river-data-getter');
 
 overrideConsole();
 
 const myAppMan = new AppMan(__dirname + '/gaugeConfig.json', __dirname + '/modifiedConfig.json');
-// const gDta = new RvrDta();
 const rData = new(RData);
 /*
     There are two timmers, one to fetch data from the internet and the other to send it to a gauge. 
@@ -26,9 +24,8 @@ console.log('________________________________________________________');
 
 
 function getRvrData() {
-    console.log('Updating data via Internet for dataSiteCode = ' + myAppMan.config.dataSiteCode + ', dataParCode = ' + myAppMan.config.dataParCode);
+    console.log('Updating data via Internet for dataSiteCode = ' + myAppMan.config.dataSiteCode);
     validData = false;
-    // gDta.getInstantValues(myAppMan.config.dataSiteCode, myAppMan.config.dataParCode, setNewValue);
     rData.getCurrentData([myAppMan.config.dataSiteCode])
     .then(()=>{
         console.log('Gauge value for ' + myAppMan.config.dataSiteCode + ' = ' + rData.dataObj.current[myAppMan.config.dataSiteCode]['00065'].value)

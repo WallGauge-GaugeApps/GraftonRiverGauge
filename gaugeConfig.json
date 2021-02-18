@@ -4,7 +4,6 @@
     "dBusName":"com.GraftonRiverGauge",
     "calibrationTable": [[0,0],[10,15],[20,216],[30,416],[40,614]],
     "dataSiteCode":"05587450",
-    "dataParCode":"00065",
     "dataLoc":"instant",
     "gaugeIrAddress":"1",
     "battLifeInDays":"620",
