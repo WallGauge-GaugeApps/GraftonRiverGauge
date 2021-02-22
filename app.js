@@ -19,6 +19,7 @@ const getDataInterveral = 10;   // Time in minutes
 const sendDataInterval = 0;     // If value = 0 get data will send data based on getDataInterveral setting
 
 var gValue = null;
+var rvrChange = 0;
 var validData = false;
 var fCastHasData = false;
 var inAlert = false;
@@ -51,8 +52,8 @@ function getForecastData() {
             fCastHasData = true;
             console.log(ForecastPeak.descripition + ' = ' + rData.dataObj.forecast[ForecastPeak.siteID].LongTermHigh);
             fcPeak.sendValue(rData.dataObj.forecast[ForecastPeak.siteID].LongTermHigh);
-            let rvrChange = Number(rData.dataObj.forecast[ForecastPeak.siteID].Current) - Number(rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow);
-            if(Number(rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow) < Number(rData.dataObj.forecast[ForecastPeak.siteID].Current)) rvrChange = rvrChange * -1;
+            rvrChange = Number(rData.dataObj.forecast[ForecastPeak.siteID].Current) - Number(rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow);
+            if (Number(rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow) < Number(rData.dataObj.forecast[ForecastPeak.siteID].Current)) rvrChange = rvrChange * -1;
             console.log('The current river level is ' + rData.dataObj.forecast[ForecastPeak.siteID].Current + ', ' + Forecast1Day.descripition + ' = ' + rData.dataObj.forecast[ForecastPeak.siteID].Tomorrow + ' this is a change of ' + rvrChange);
             fc1Day.sendValue(rvrChange);
         })
@@ -83,7 +84,13 @@ function setNewValue(eNum, eTxt, val) {
 
 function sendValueToGauge() {
     if (validData) {
-        if (myAppMan.setGaugeValue(gValue)) {
+        let rslt = myAppMan.setGaugeValue(gValue, "', 14 day = " +
+            rData.dataObj.forecast[ForecastPeak.siteID].LongTermHigh + "', 1 day change = " +
+            rvrChange + "', " +
+            "obs = " + rData.dataObj.current[myAppMan.config.dataSiteCode]['00065'].dateTime
+        );
+
+        if (rslt) {
             myAppMan.setGaugeStatus('Okay, ' + (new Date()).toLocaleTimeString() + ', ' + (new Date()).toLocaleDateString());
             if (inAlert == true) {
                 myAppMan.sendAlert({ [myAppMan.config.descripition]: "0" });
