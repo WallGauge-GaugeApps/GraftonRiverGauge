@@ -85,8 +85,8 @@ function setNewValue(eNum, eTxt, val) {
 function sendValueToGauge() {
     if (validData) {
         let rslt = myAppMan.setGaugeValue(gValue, "', 14 day = " +
-            rData.dataObj.forecast[ForecastPeak.siteID].LongTermHigh + "', 1 day change = " +
-            rvrChange + "', " +
+            Number(rData.dataObj.forecast[ForecastPeak.siteID].LongTermHigh).toFixed(2) + "', 1 day change = " +
+            Number(rvrChange).toFixed(2) + "', " +
             "obs = " + rData.dataObj.current[myAppMan.config.dataSiteCode]['00065'].dateTime
         );
 
