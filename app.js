@@ -9,7 +9,7 @@ overrideConsole();
 const myAppMan = new AppMan(__dirname + '/gaugeConfig.json', __dirname + '/modifiedConfig.json');
 const fc1Day = new irTransmitter(Forecast1Day.gaugeIrAddress, Forecast1Day.calibrationTable);
 const fcPeak = new irTransmitter(ForecastPeak.gaugeIrAddress, ForecastPeak.calibrationTable);
-const rData = new (RData);
+const rData = new RData();
 /*
     There are two timmers, one to fetch data from the internet and the other to send it to a gauge. 
     If you would like to send data to the gauge as soon as you receive it, then only one timer is required.
