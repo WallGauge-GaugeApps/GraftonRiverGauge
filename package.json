@@ -1,6 +1,6 @@
 {
   "name": "grafton-river-gauge",
-  "version": "7.1.2",
+  "version": "7.1.3",
   "description": "Sends data to WallGauge wirelessly over infrared",
   "main": "app.js",
   "scripts": {

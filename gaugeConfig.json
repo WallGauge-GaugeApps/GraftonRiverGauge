@@ -6,7 +6,7 @@
     "dataSiteCode":"05587450",
     "dataLoc":"instant",
     "gaugeIrAddress":"1",
-    "battLifeInDays":"620",
+    "battLifeInDays":"2548",
     "battLastReplaced":"",
-    "gaugeURL":"https://water.weather.gov/ahps2/hydrograph.php?wfo=lsx&gage=grfi2"
+    "gaugeURL":"https://wallgauge-gaugeapps.github.io/GraftonRiverGauge/"
 }
