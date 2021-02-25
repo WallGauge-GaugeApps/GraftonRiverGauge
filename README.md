@@ -1,6 +1,9 @@
 # Grafton River Gauge
 
+[<img align="left" width="100" height="100" src="./docs/wallGaugeLogSquared.png" >](https://WallGauge.com)
 The Grafton Illinois WallGauge shows the current gauge height (river level), 24 hour forecast, and 14 day forecast at the confluence of the Illinois and Mississippi rivers. The large main gauge depicts the current river level.  You can see the various flood stages and how the high water can affect Grafton residents and businesses.  The data for the WallGauge is from a U.S. Army Corps of Engineers gauge located on the east side of town. The data from this gauge is shared with USGS and NOAA.  Those two organizations use the gauge data to create river forecast and make that data available to the public.
+
+---
 
 ## River Gauge Data
 
